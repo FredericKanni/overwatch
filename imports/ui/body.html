@@ -8,21 +8,19 @@
 
 <!-- DROPDOWN POUR TRIER LES CARTES -->
 {{> drop}} 
-<!-- {{> card}} -->
 
+
+<!-- {{> card}} -->
 <div class="container-fluid">
     <div class="row">
+        <!-- pour chaque elements perso dans la collection Perso //fait appel au helpers dans body.js 
+        fait quelque chose -->
     {{#each persos}}
-    <!-- 
-    <div class="col-md-4 my-2">
-        {{> card}}
-    </div> -->
-
+    <!-- on instancie une carte dans un col-md3 pour faire des ligne de 4 elements 
+    my c'est margin sur l axe y -->
         <div class="col-md-3 my-2">
             {{> card}}
         </div>
-
-
     {{/each}}
 
     </div>

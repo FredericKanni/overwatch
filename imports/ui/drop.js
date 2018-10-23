@@ -9,8 +9,6 @@ Template.drop.events({
     
         console.log('effacer');
     },
-
-
     'click #za': function() {
         event.preventDefault(); 
     
@@ -26,16 +24,4 @@ Template.drop.events({
     
         console.log('recent');
     },
-
-
-
-
-
-
-
-
-
-
-
-
-    });
+});

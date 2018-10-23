@@ -1,6 +1,6 @@
 import { Persos } from '../api/Persos';
-
-import '../api/Persos.js';
+import { Msgs } from '../api/Emails';
+// import '../api/Persos.js';
 
 
 
@@ -11,9 +11,11 @@ import './input.js';
 import './jumbotron.js';
 import './modal.js';
 import './navbar.js';
-import { Msgs } from '../api/Emails';
 
 import './body.html';
+
+
+// ATTENTION NE PAS OUBLIE CETTE ETAPE SINON LES #each ne marche pas
 
 Template.body.helpers({
     persos() {
@@ -22,311 +24,80 @@ Template.body.helpers({
     msgs() {
         return   Msgs.find().fetch();
       }
-
 })
 
 
-
-       Template.modal.events({  
-           
-
-'click .pika': function(event) {
+Template.modal.events({  
+    
+//recupere les buttons(click)  avec la classe pika  dans le template modal 
+//BUTTON DU MODAL
+    'click .pika': function(event) {
 
 
     //RECUPERE L OBJET QUI EST LE BUTTON MODIFIER
-          const target = event.target;
+    const target = event.target;
     //RECUPERE L ID DE LA CARTE AUQUEL APPARTIENT LE BTN SUR LEQUEL ON VIENT DE VLIQUER
-          const idMembre = target.getAttribute('data-id');
+    const idMembre = target.getAttribute('data-id');
     //RECUPRE L OBJET DANS LA COLLECTION AVEC L ID  DE LA CARTE QU ON VIENT DE RECUPERER
-          const perso = Persos.findOne({_id:idMembre});
-    // console.log('hello');
+    const perso = Persos.findOne({_id:idMembre});
     
-    //         console.log(this._id);
-            // console.log(target);
-            // console.log(idMembre);
-            // console.log(perso);
-
-
-
-    
-    const firstmod = document.querySelector("#champnom");
-    const secondmod = document.querySelector("#champdesc");
-    const thirdmod = document.querySelector("#champurl");
+//RECUPERE LE CHAMP NOM DU FORMULAIRE DU MODAL //CE FORMULAIRE SE SITUE DANS BODY.HTML
+    const lenom = document.querySelector("#champnom");
+//RECUPERE LE CHAMP DESC
+    const ladesc = document.querySelector("#champdesc");
+//RECUPERE LE CHAMP URL
+    const lurl = document.querySelector("#champurl");
+//RECUPERE L INPUT DE TYPE HIDDEN la partie du modal qui se trouve dans body.html
     const hidden = document.querySelector("#edit-id");
 
 
-
+//ON FAIT QUE LA VALEUR DU IMPUT HIDDEN QUI EST DANS LE "FORMULAIRE DU MODAL " SOIT  L ID DE LA CARTE SUR LEQUEL ON VIENT DE CLIQUER
     hidden.value = idMembre;
-            firstmod.value = perso.nom;
-            secondmod.value = perso.desc;
-            thirdmod.value = perso.url;
+//LA VALEUR DU CHAMP NOM PREND COMME VALEUR  LE nom DE L OBJET perso  cest a dire lacarte auquel appartient le button pika sur lequel on vient de cliquer
+    lenom.value = perso.nom;
+//LA VALEUR DU CHAMP desc PREND COMME VALEUR..
+    ladesc.value = perso.desc;
+//LA VALEUR DU CHAMP url PREND COMME VALEUR..
+    lurl.value = perso.url;
 
 
+    // console.log( hidden.value );
+    // console.log( lenom.value );
+    // console.log( ladesc.value );
+    // console.log( lurl.value );
+    
+    },
 
-            // console.log(firstmod.value);
-            // console.log( secondmod.value);
-            // console.log( thirdmod.value);
-            
-        // Persos.update(idMembre, {
-        
-        //   $set: { nom: pnom.value,
-        //     desc: pdesc.value,
-        //     url: purl.value },
-        
-        // });
-          // console.log("ce");
-        //   const hidden = document.querySelector("#edit-id");
-
-        //   hidden.value = idMembre;
-        //   console.log(idMembre);
-        //   console.log(perso.nom);
-
-//TODO
-        //   var els = document.querySelectorAll('.mystyle');
-      
-        //   for (var i = 0; i < els.length; i++) {
-        //     // console.log('plop');
-        //     els[i].classList.remove('mystyle')
-        //   }
-
-
-
-
-
-
-
-
-        //   target.classList.add("mystyle");
-          // console.log('mpol')
-    
-
-
-          // console.log(membre.nom);
-          // console.log(membre.desc);
-          // console.log(membre.url);
-        
-          const lenom = perso.nom;
-          const ladesc = perso.desc;
-          const lurl = perso.url;
-          // const test =this._id;
-          // console.log(test);
-          
-      // Membres.remove(this._id);
-      // console.log('effacer');
-    
-    
-       
-          // console.log("ce");
-          // Membres.remove(this._id);
-    
-    
-          // var el = document.querySelector(".data-id");
-          // console.log(el);
-    
-          // const membre = Membres.findOne({_id:idMembre});
-          // console.log(membre);
-    
-    const pnom = document.querySelector('#champnom');
-    
-    const nm = perso.nom;
-    // console.log(pnom);
-    
-    pnom.value =nm;
-    
-    
-    
-    const pdesc = document.querySelector('#champdesc');
-    
-    const nd = perso.desc;
-    // console.log(nd);
-    //  console.log(pdesc);
-    
-    pdesc.value =nd;
-    
-    
-    const purl = document.querySelector('#champurl');
-    const ur = perso.url;
-    // console.log(purl);
-    purl.value = ur;
-    
-
-    
-    // Membres.update(this._id, {
-
-    //   $set: { nom: 'orange' },
-
-    // });
-    
-       },
-
-       });
+ });
 
 Template.body.events({   
-
-
-    // 'click .pika': function(event) {
-
-
-    //     //RECUPERE L OBJET QUI EST LE BUTTON MODIFIER
-    //           const target = event.target;
-    //     //RECUPERE L ID DE LA CARTE AUQUEL APPARTIENT LE BTN SUR LEQUEL ON VIENT DE VLIQUER
-    //           const idMembre = target.getAttribute('data-id');
-    //     //RECUPRE L OBJET DANS LA COLLECTION AVEC L ID  DE LA CARTE QU ON VIENT DE RECUPERER
-    //           const perso = Persos.findOne({_id:idMembre});
-    //     // console.log('hello');
-        
-    //     //         console.log(this._id);
-    //     //         console.log(target);
-    //     //         console.log(idMembre);
-    //     // console.log(membre);
-    //           // console.log("ce");
-    //         //   const hidden = document.querySelector("#edit-id");
-
-    //         //   hidden.value = idMembre;
-    //         //   console.log(idMembre);
-    //         //   console.log(perso.nom);
-    
-    // //TODO
-    //         //   var els = document.querySelectorAll('.mystyle');
-          
-    //         //   for (var i = 0; i < els.length; i++) {
-    //         //     // console.log('plop');
-    //         //     els[i].classList.remove('mystyle')
-    //         //   }
-    
-    
-    
-    
-    
-    
-    
-    
-    //         //   target.classList.add("mystyle");
-    //           // console.log('mpol')
-        
-    
-    
-    //           // console.log(membre.nom);
-    //           // console.log(membre.desc);
-    //           // console.log(membre.url);
-            
-    //           const lenom = perso.nom;
-    //           const ladesc = perso.desc;
-    //           const lurl = perso.url;
-    //           // const test =this._id;
-    //           // console.log(test);
-              
-    //       // Membres.remove(this._id);
-    //       // console.log('effacer');
-        
-        
-           
-    //           // console.log("ce");
-    //           // Membres.remove(this._id);
-        
-        
-    //           // var el = document.querySelector(".data-id");
-    //           // console.log(el);
-        
-    //           // const membre = Membres.findOne({_id:idMembre});
-    //           // console.log(membre);
-        
-    //     const pnom = document.querySelector('#champnom');
-        
-    //     const nm = perso.nom;
-    //     // console.log(pnom);
-        
-    //     pnom.value =nm;
-        
-        
-        
-    //     const pdesc = document.querySelector('#champdesc');
-        
-    //     const nd = perso.desc;
-    //     // console.log(nd);
-    //     //  console.log(pdesc);
-        
-    //     pdesc.value =nd;
-        
-        
-    //     const purl = document.querySelector('#champurl');
-    //     const ur = perso.url;
-    //     // console.log(purl);
-    //     purl.value = ur;
-        
-    
-        
-    //     // Membres.update(this._id, {
-    
-    //     //   $set: { nom: 'orange' },
-    
-    //     // });
-        
-    //        },
-
+  //  recupere les buttons(click) avec la class save dans le body .html 
+  //button sauvegarder
     'click .save': function(event) {
- 
-        //RECUPERER LES VALEUR DES CHAMPS DU MODALS
-            const pnom = document.querySelector('#champnom');
-            const pdesc = document.querySelector('#champdesc');
-            const purl = document.querySelector('#champurl');
-        
-            // const tg = document.querySelector('.mystyle');
-        
-            console.log(pnom.value);
-             console.log(pdesc.value);
-             console.log(purl.value);
-        
-             const hidden = document.querySelector("#edit-id");
-             console.log(hidden.value);
-const id =hidden.value;
 
-             Persos.update(id, {
-                $set: { nom: pnom.value, desc:pdesc.value,url: purl.value},
-            });
-            //   hidden.value = idMembre;
-            //   console.log(idMembre);
-            //   console.log(perso.nom);
-           
-            // console.log('sauvegarder');
-            // console.log(pnom.value);
-            // console.log( pdesc.value);
-            // console.log(purl.value);
-            // console.log(tg);
-        
-        
-        
-        
-            // const idMembre = tg.getAttribute('data-id');
-            //RECUPRE L OBJET DANS LA COLLECTION AVEC L ID  DE LA CARTE QU ON VIENT DE RECUPERER
-            // const perso = Persos.findOne({_id:idMembre});
-            
-            // console.log(tg);
-                   
-              
-            // console.log(idMembre);
-            // console.log(membre);
-            // membre.nom='plop';
-            // const lp = document.querySelector('#edit-id');
-            // console.log(lp);
-        // const target = event.target;
-        
-        // const idMembre = target.getAttribute('data-id');
-        
-        // const membre = Membres.findOne({_id:idMembre});
-        // console.log(this._id);
-        // console.log(target);
-        // console.log(membre);
-        
-        
-        // Persos.update(idMembre, {
-        
-        //   $set: { nom: pnom.value,
-        //     desc: pdesc.value,
-        //     url: purl.value },
-        
-        // });
-        
-          },
+    //RECUPERER LES VALEURS DES CHAMPS DU MODALS
+        const modalnom = document.querySelector('#champnom');
+        const modaldesc = document.querySelector('#champdesc');
+        const modalurl = document.querySelector('#champurl');
     
+        
+        //  console.log(modalnom.value);
+        //  console.log(modaldesc.value);
+        //  console.log(modalurl.value);
+    
+
+        //RECUPRE L INPUT AVEC LA CLASS #edit-id 
+        const hidden = document.querySelector("#edit-id");
+        //LA VALUE DE CET  INPUT CEST L ID DE LA CARTE SUR LE QUEL ON VEUT ECRASER LES VALEURS
+        // console.log(hidden.value);
+        //JAI CREE UN AUTRE CONSTANT ID POUR STOCKER HIDDEN.VALUE
+        const idcarte =hidden.value;
+
+
+        //JE PREND LA COLLECTION Perso et j update l element avec la identifient ici id 
+        //et je change le valeur des parametre souhaiter de cet element
+            Persos.update(idcarte, {
+                $set: { nom: modalnom.value, desc:modaldesc.value,url: modalurl.value},
+            });
+        },
     });
