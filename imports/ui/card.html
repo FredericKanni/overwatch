@@ -1,0 +1,12 @@
+<template name="card">
+  <div class="card" style="width: 18rem;">
+    <!-- <img class="card-img-top" src="https://via.placeholder.com/350x150" alt="Card image cap"> -->
+    <img class="card-img-top" src="{{url}}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{nom}}</h5>
+      <p class="card-text">{{desc}}</p>
+      {{> modal}}
+      <a href="" class="btn btn-primary delete" >Effacer</a>
+    </div>
+  </div>
+</template>

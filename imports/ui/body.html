@@ -1,0 +1,124 @@
+<body>
+   
+{{> navbar}}
+{{> jumbo}}
+
+<!-- CHAMP POUR CREER UNE NOUVELLE CARTE -->
+{{> input}} 
+
+<!-- DROPDOWN POUR TRIER LES CARTES -->
+{{> drop}} 
+<!-- {{> card}} -->
+
+<div class="container-fluid">
+    <div class="row">
+    {{#each persos}}
+    <!-- 
+    <div class="col-md-4 my-2">
+        {{> card}}
+    </div> -->
+
+        <div class="col-md-3 my-2">
+            {{> card}}
+        </div>
+
+
+    {{/each}}
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+     <!-- Modal -->
+     <div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+ 
+ 
+ 
+                 <h4 class="modal-title" id="myModalLabel">
+                     Modal title
+                 </h4>
+ 
+ 
+ 
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+
+ 
+ 
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+           
+     
+     
+                
+          <form class=" new-site ">
+               
+                 <input class="form-control  my-2" type="text" name="title" id="champnom" placeholder="Entrer le nom du perso" />
+     
+                 <input class="form-control  my-2" type="text" name="text" id="champdesc" placeholder="Entrer un descriptif" />
+ 
+                 <input class="form-control pb-5 my-2" type="text" name="text" id="champurl"  placeholder="Entrer URL" />
+     
+                 
+                 <!-- <input class="btn btn-primary btn-lg" href="#"  type="submit" role="button" value="Learn more"> -->
+     
+               </form>
+                <!-- <p> {{lenom}} </p> -->
+                
+            </div>
+            
+            <!-- Modal Footer -->
+            <!-- TODO -->
+            <div class="modal-footer ">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal"   >
+                            Fermer
+                </button>
+                <button type="button" class="btn btn-primary  save"   >
+                    <!-- data-dismiss="modal" -->
+                 
+                       Sauvegarder
+                    <!-- Save changes -->
+                </button>
+
+
+            </div>
+
+             <!-- ajout de hidden -->
+             <input type="hidden" id="edit-id" name="editId" />
+        </div>
+     </div>
+     </div>
+
+
+     {{> email}} 
+
+     {{#each msgs}}
+   {{nom}}
+   {{desc}}
+   {{url}}
+    {{createdAt}}
+   <br>
+     {{/each}}
+  </body>
